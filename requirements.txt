@@ -1,0 +1,11 @@
+streamlit~=1.45.0
+moviepy
+langgraph
+langchain~=0.3.25
+langchain_openai~=0.3.16
+langchain_community
+langchain-core~=0.3.58
+requests
+gtts
+elevenlabs
+groq
