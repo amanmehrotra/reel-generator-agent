@@ -1,5 +1,6 @@
 # edit_video.py implementation
 import os
+import tempfile
 
 from moviepy import concatenate_videoclips, VideoFileClip, AudioFileClip, CompositeAudioClip, vfx, TextClip, \
     CompositeVideoClip, ColorClip
@@ -97,13 +98,21 @@ def edit_video(state):
         #     except Exception as e:
         #         print(f"[INFO] Background music failed: {e}")
 
-        final_path = os.path.join(output_dir, f"motivational_reel_{uuid4()}.mp4")
+        # final_path = os.path.join(output_dir, f"motivational_reel_{uuid4()}.mp4")
+        with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as f:
+            temp_path = f.name
         # final_video_with_subtitles.show()
-        final_video_with_subtitles.write_videofile(str(final_path),
+        log_area = st.empty()
+        progress_bar = st.empty()
+        status_text = st.empty()
+
+        logger = StreamlitLogger(log_area, progress_bar, status_text)
+        final_video_with_subtitles.write_videofile(temp_path,
                                                    fps=30,
                                                    codec="libx264",
                                                    audio_codec="aac",
                                                    audio_bitrate="128K",
+                                                   # logger=logger,
                                                    preset="slow",
                                                    ffmpeg_params=[
                                                        "-crf", "20",  # Constant quality: visually lossless
@@ -115,7 +124,7 @@ def edit_video(state):
                                                    threads=4)
 
     st.markdown("✅ Video created successfully!")
-    return {**state, "final_video": str(final_path)}
+    return {**state, "final_video": str(temp_path)}
 
 def chunk_words_by_timing(words, max_chunk_duration=1.2):
     """
@@ -161,3 +170,30 @@ def chunk_words_by_timing(words, max_chunk_duration=1.2):
 
     return chunks
 
+class StreamlitLogger:
+    def __init__(self, log_placeholder, progress_placeholder, status_placeholder):
+        self.log_placeholder = log_placeholder
+        self.progress_placeholder = progress_placeholder
+        self.status_placeholder = status_placeholder
+        self.logs = ""
+
+    def __call__(self, *args, **kwargs):
+        message = kwargs.get("message", args[0] if args else "")
+        self.logs += str(message) + "\n"
+        self.log_placeholder.text_area("Logs", self.logs, height=200)
+
+def iter_bar(self, iterable=None, **kwargs):
+    # Accept the iterable from:
+    # 1) positional argument 'iterable'
+    # 2) keyword 'chunk' (used by MoviePy)
+    # 3) keyword 'iterable' if present
+    if iterable is None:
+        iterable = kwargs.get("chunk") or kwargs.get("iterable")
+    if iterable is None:
+        print("No iterable passed to iter_bar")
+
+    total = len(iterable)
+    for i, item in enumerate(iterable):
+        self.progress_placeholder.progress((i + 1) / total)
+        self.status_placeholder.markdown(f"Progress: {i+1}/{total} ({int((i + 1) / total * 100)}%)")
+        yield item

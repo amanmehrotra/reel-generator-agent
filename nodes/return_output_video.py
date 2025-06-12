@@ -9,6 +9,5 @@ def output_result(state):
     output_path = state['final_video']
     # Step 2: Show download button
 
-    with open(output_path, "rb") as file:
-        st.session_state.video_bytes = file.read()
+    st.session_state.file_path = output_path
     return state

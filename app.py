@@ -65,8 +65,8 @@ def start():
         st.session_state.graph_state = None
     if 'caption' not in session_state:
         st.session_state.caption = None
-    if 'video_bytes' not in session_state:
-        st.session_state.video_bytes = None
+    if 'file_path' not in session_state:
+        st.session_state.file_path = None
     if 'unique_id' not in session_state:
         st.session_state.unique_id = None
 
@@ -83,7 +83,7 @@ def start():
     if analyze_button:
         with st.spinner("Generating themes, please wait..."):
             st.session_state.caption = None
-            st.session_state.video_bytes = None
+            st.session_state.final_path = None
             st.session_state.unique_id = None
             result = reel_graph.invoke({"user_input": motivational_topic,
                                         "step": ""})
@@ -100,7 +100,7 @@ def start():
         submit_button = st.button("Generate reel")
         if submit_button:
             st.session_state.caption = None
-            st.session_state.video_bytes = None
+            st.session_state.final_path = None
             st.session_state.unique_id = None
             print(st.session_state.selected_theme, st.session_state.selected_purpose, st.session_state.selected_tone)
             prev_state = st.session_state.graph_state
@@ -114,16 +114,20 @@ def start():
             #print(reel_result)
     if st.session_state.caption:
         st.markdown(f'Caption: {st.session_state.caption}')
-    if st.session_state.video_bytes:
-        st.download_button(
-            label="📥 Download Your Video",
-            data=st.session_state.video_bytes,
-            file_name=f"video_{uuid.uuid4()}.mp4",
-            mime="video/mp4"
-    )
+    if st.session_state.file_path:
+        with open(st.session_state.file_path,"rb") as f:
+            video_bytes = f.read()
+            st.download_button(
+                label="📥 Download Your Video",
+                data=video_bytes,
+                file_name=f"video_{uuid.uuid4()}.mp4",
+                mime="video/mp4"
+        )
         if st.button('Clean associated files'):
             delete_files_with_suffix('./assets/voiceovers', st.session_state.unique_id)
             delete_files_with_suffix('./assets/visuals', st.session_state.unique_id)
+            if st.session_state.file_path is not None and os.path.exists(st.session_state.final_path):
+                os.remove(st.session_state.file_path)
 
 def delete_files_with_suffix(directory, unique_id):
     # Pattern: match any file ending with the unique_id

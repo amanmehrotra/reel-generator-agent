@@ -79,9 +79,9 @@ def run_graph():
     # builder.add_edge("VoiceoverCreator", "VisualStyleSelector")
     builder.add_edge("VoiceoverCreator", "VisualGenerator")
     builder.add_edge("VisualGenerator", "SubtitleGenerator")
-    builder.add_edge("SubtitleGenerator", "VideoEditor")
-    builder.add_edge("VideoEditor", "CaptionGenerator")
-    builder.add_edge("CaptionGenerator", "OutputResult")
+    builder.add_edge("SubtitleGenerator", "CaptionGenerator")
+    builder.add_edge("CaptionGenerator", "VideoEditor")
+    builder.add_edge("VideoEditor", "OutputResult")
     builder.add_edge("OutputResult", END)
 
     graph = builder.compile()
