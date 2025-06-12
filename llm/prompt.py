@@ -27,7 +27,8 @@ Based on the provided theme and script, generate a short, impactful Instagram ca
 4. Ends with a mix of niche and trending motivational hashtags relevant to the theme.
 5. Keep it relatable, emotionally charged, and concise.
 6. Use plain English.
-7. Do not return any explanation or metadata — only the final caption text.
+7. Add appropriate emojis as needed.
+8. Do not return any explanation or metadata — only the final caption text.
 """
 
 SCRIPT_SCENE_PROMPT ="""

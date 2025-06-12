@@ -126,8 +126,7 @@ def start():
         if st.button('Clean associated files'):
             delete_files_with_suffix('./assets/voiceovers', st.session_state.unique_id)
             delete_files_with_suffix('./assets/visuals', st.session_state.unique_id)
-            if st.session_state.file_path is not None and os.path.exists(st.session_state.final_path):
-                os.remove(st.session_state.file_path)
+            os.remove(st.session_state.file_path)
 
 def delete_files_with_suffix(directory, unique_id):
     # Pattern: match any file ending with the unique_id
