@@ -4,7 +4,8 @@ from groq import Groq
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
-from llm.prompt import TOPIC_ANALYZER_PROMPT, SCRIPT_SCENE_PROMPT, VISUAL_STYLE_PROMPT, INSTA_CAPTION_PROMPT
+from llm.prompt import TOPIC_ANALYZER_PROMPT, SCRIPT_SCENE_PROMPT, VISUAL_STYLE_PROMPT, INSTA_CAPTION_PROMPT, \
+    SCRIPT_SCENE_PROMPT_2
 from utils.config import llm_baseurl, llm_key, llm_model
 
 
@@ -36,13 +37,12 @@ class LLMService:
             raise e
 
     def generate_script(self, theme, purpose, tone, temperature):
-
         try:
             completion = self.groq.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 response_format={"type": "json_object"},
                 messages=[
-                    {"role": "system", "content": SCRIPT_SCENE_PROMPT},
+                    {"role": "system", "content": SCRIPT_SCENE_PROMPT_2},
                     {"role": "user", "content": f"Generate script for the given theme: {theme}, purpose: {purpose} and tone: {tone}"}
                 ],
                 temperature=temperature,

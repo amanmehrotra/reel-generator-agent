@@ -17,7 +17,7 @@ def generate_script_and_scenes(state):
         # Use LLM to detect theme/emotion/tone
         llm_service = LLMService()
 
-        result = llm_service.generate_script(theme = theme, purpose = purpose, tone = tone, temperature = 0.7)
+        result = llm_service.generate_script(theme = theme, purpose = purpose, tone = tone, temperature = 0.9)
         try:
             parsed = json.loads(result)
             print(parsed)

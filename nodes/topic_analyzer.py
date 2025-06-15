@@ -8,7 +8,7 @@ def analyze_topic(state):
     # Use LLM to detect theme/emotion/tone
     llm_service = LLMService()
 
-    result = llm_service.analyze_topic(user_input=motivational_topic, temperature=0.7)
+    result = llm_service.analyze_topic(user_input=motivational_topic, temperature=0.8)
     print(result)
     try:
         parsed = json.loads(result)

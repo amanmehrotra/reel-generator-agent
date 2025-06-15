@@ -13,7 +13,7 @@ def generate_caption(state):
         # Use LLM to detect theme/emotion/tone
         llm_service = LLMService()
 
-        result = llm_service.generate_caption(theme=theme, script=script, temperature=0.7)
+        result = llm_service.generate_caption(theme=theme, script=script, temperature=0.8)
         # print(result)
     st.markdown("✅ Caption generated successfully!")
     return {**state, "caption": result}
