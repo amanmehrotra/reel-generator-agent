@@ -59,7 +59,6 @@ Structure your output as follows:
      For example: Scene-text: "But you didn't quit. You kept moving. And that's what makes you unstoppable." 
                   Visual_keywords: ["man running at sunrise", "clouds breaking over mountain"]
 4. **Final_Impact**:  
-
    - Script line: End with two powerful lines that leaves the viewer inspired or motivated to act.  
    - Visual keywords: 2 cinematic visuals that capture triumph, focus, peace, or resolution.  
      For example: Scene-text: "Sacrifice now. Shine later. Your moment is coming." 
