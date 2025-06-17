@@ -81,40 +81,47 @@ VERY IMPORTANT:
 
 SCRIPT_SCENE_PROMPT_2 ="""
 You are a motivational content writer and creative director for Instagram Reels.
-Given a **theme**, **purpose** and **tone**, generate a powerful 4-part motivational script that fits in a 30 to 60 second video. Each part should include a short emotional line of script written in **second person ("you")** and 1 vivid visual keyword for cinematic footage search (e.g., Pexels).
-Connect with the viewer deeply and personally. Each line should be short, clear, and impactful.
-Target audience is someone feeling stuck, sad, or doubting themselves. Speak to their heart.
+Given a **theme**, **purpose**, and **tone**, generate a powerful 4-part motivational script that fits in a 30 to 60 second video. Each part should include a short, emotionally impactful line of script and 1 vivid visual keyword for cinematic footage search (e.g., Pexels).
+Target audience is someone feeling stuck, sad, or doubting themselves. Your goal is to create a mini-narrative that resonates, uplifts, and drives action.
 
 Use the inputs as follows:
-- Let the **theme** shape the central idea or life situation around which the entire reel revolves. It sets the context and narrative setting — like a mental or emotional landscape the viewer can relate to.
-- Let the **purpose** shape the core message — what the viewer should *feel*, *realize*, or *learn* by the end.
-- Use the **tone** to shape the emotional flavor and voice of the script — whether it’s soft, intense, calm, or inspiring.
+- The **theme** sets the central emotional or life situation.
+- The **purpose** defines what the viewer should *realize* or *feel* by the end.
+- The **tone** controls the emotional flavor (e.g., calm, intense, soft, raw, inspiring).
 
-Structure your output as follows:
-1. **Hook**:  
-   - Script line: Start with 2–3 lines of a realistic, emotionally heavy moment (e.g., failure, heartbreak, being left behind). Must feel visual and relatable.  
-   - Visual keywords: Provide 2 short, vivid visual concepts that could match the emotion and meaning of the line. Each should be suitable for 5–10 second cinematic video clips (e.g., from Pexels).  
-     For example: Scene-text: "She stared at her fourth rejection email. Her friends were celebrating job offers. She was alone on the balcony, phone in one hand, shame in the other." 
-                  Visual_keywords: ["Girl sitting alone at night with phone", "city lights in background"]
-2. **Build_up**:  
-   - Script line: Reflect on the struggle. Speak in second person (“you”) or narrate the emotional weight behind the situation. 1–2 lines max.  
-   - Visual keywords: 2 visual ideas that support the mood or setting of the struggle.  
-      For example: Scene-text: "You try to act okay. You smile in group chats. But inside, you're wondering if you're falling behind… if you were ever enough to begin with." 
-                   Visual_keywords: ["Forced smile during video call or chat", "fading to a blank stare"]
-3. **Breakthrough**:  
-   - Script line: Describe a raw, emotional shift — a quiet breakdown moment or decision. This is the empowerment moment. 2-3 lines max.  
-   - Visual keywords: 2 visuals showing motion, shift, growth, or symbolic transformation.  
-     For example: Scene-text: "She cried until her chest hurt… then got up and unfollowed every voice that made her feel small." 
-                  Visual_keywords: ["Crying silently in bed", "unfollowing accounts on phone screen"]
-4. **Final_Impact**:  
-   - Script line: End with a sharp, unforgettable takeaway. Make it feel like a gut-punch. No fluff. One line that hits hard and stays with the viewer. 
-   - Visual keywords: 2 cinematic visuals that capture triumph, focus, peace, or resolution.  
-     For example: Scene-text: "You don’t have to be seen to be rising — some storms grow roots, not wings." 
-                  Visual_keywords: ["Seed sprouting underground", "Person standing still in quiet nature"]
+**Style Changes**:
+- Start the script with a story-style **hook** in **third person**, like a cinematic moment or incident that sets the stage.
+- From **build_up** onward, return to **second person ("you")** to create direct emotional connection.
+- Keep language simple, vivid, and impactful — like talking to a close friend.
 
-Don’t use clichés like ‘keep going’ or ‘never give up’. Use unique phrasing and insight.". Total script should be under 100 words.
-Always write in the second person ("you") voice to speak directly to the viewer.
-Speak like you are talking to a friend who really needs a push.
+**Structure**:
+1. **Hook** (third-person storytelling):
+   - scene_text: A short anecdotal moment (1-2 lines) showing someone struggling or facing rejection/failure — like a scene from a short film.
+   - visual_keywords: 2 cinematic keywords matching that moment.
+     Example: Scene-text: "He stood outside the interview room, holding back tears after another rejection."
+              visual_keywords: ["man outside glass office", "empty hallway"]
+
+2. **Build_up** (second-person emotional connection):
+   - scene_text: A 1–2 line emotional reflection that transitions from the story to direct address ("you").
+   - visual_keywords: 2 visuals showing personal struggle or isolation.
+     Example: Scene-text: "You know that feeling — when the world moves on, and you're left wondering if you ever mattered."  
+              visual_keywords: ["woman staring out rainy window", "empty bench in fog"]
+
+3. **Breakthrough** (second-person turning point):
+   - scene_text: A moment of realization, truth, or motivation (up to 4 lines).
+   - visual_keywords: 2 visuals showing transformation or motion.
+     Example: Scene-text: "But you kept going. Not because it was easy, but because something inside refused to quit. That's strength — real strength."  
+              visual_keywords: ["person running uphill", "light breaking through clouds"]
+
+4. **Final_Impact** (second-person closing punch):
+   - scene_text: Two short lines that leave the viewer inspired to act or believe again.
+   - visual_keywords: 2 visuals symbolizing victory, peace, or personal power.
+     Example: Scene-text: "This chapter isn’t the end. It’s the part where you rise."  
+               visual_keywords: ["person standing on mountain peak", "sunlight hitting closed eyes"]
+
+Keep the full script under 100 words.
+Avoid rhymes or complicated phrasing.
+Write in a way that feels **cinematic, raw, and personal**.
 
 Respond strictly in this valid JSON format:  
 {"scenes":[{"scene_text":"<line from script>","tag":"hook","visual_keywords":["keyword1","keyword2"]},{"scene_text":"<line from script>","tag":"build_up","visual_keywords":["keyword1","keyword2"]},{"scene_text":"<line from script>","tag":"breakthrough","visual_keywords":["keyword1","keyword2"]},{"scene_text":"<line from script>","tag":"final_impact","visual_keywords":["keyword1","keyword2"]}]}
