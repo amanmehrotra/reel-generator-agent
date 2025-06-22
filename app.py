@@ -46,7 +46,23 @@ def start():
         { "label": "Chasing Dreams", "value": "dreams" },
         { "label": "Self-Love", "value": "self_love" },
         { "label": "Purpose & Meaning", "value": "purpose" },
-        { "label": "Comparison & Self-Acceptance", "value": "comparison" }
+        { "label": "Comparison & Self-Acceptance", "value": "comparison" },
+
+        {"label": "Burnout & Boundaries", "value": "burnout"},
+        {"label": "Childhood Wounds & Growth", "value": "childhood_wounds"},
+        {"label": "Letting Go of Control", "value": "control"},
+        {"label": "Trusting Divine Timing", "value": "divine_timing"},
+        {"label": "Shame & Self-Forgiveness", "value": "shame"},
+        {"label": "Stillness & Inner Clarity", "value": "stillness"},
+        {"label": "People Pleasing & Identity", "value": "people_pleasing"},
+        {"label": "Healing in Solitude", "value": "solitude"},
+        {"label": "Breaking Generational Patterns", "value": "generational_patterns"},
+        {"label": "Truth vs Comfort", "value": "truth_vs_comfort"},
+        {"label": "Ego Death & Surrender", "value": "ego"},
+        {"label": "Unlearning Old Beliefs", "value": "unlearning"},
+        {"label": "Starting Over", "value": "starting_over"},
+        {"label": "Hidden Potential", "value": "hidden_potential"},
+        {"label": "The Power of Silence", "value": "silence"}
 ]
 
     if 'motivational_topic' not in session_state:

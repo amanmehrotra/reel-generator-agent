@@ -55,13 +55,13 @@ def edit_video(state):
                         current_per_subtitle_start = current_start+ item['start']
                         txt_clip = TextClip(
                             text=item["word"],
-                            font_size=75,
+                            font_size=78,
                             font="./assets/fonts/BebasNeue-Regular.ttf",
                             color="white",
                             stroke_color="black",
                             stroke_width=2,
                             method="caption",
-                            size=((video_clip.w-80)//2*2, 88)
+                            size=((video_clip.w-80)//2*2, 91)
                         )
                         # padded_clip = txt_clip.with_background_color(
                         #     size=(video_clip.w, txt_clip.h+40),
@@ -85,8 +85,9 @@ def edit_video(state):
         final_video = concatenate_videoclips(video_clips, method="compose")
         # final_audio = CompositeAudioClip(audio_clips)
         black_overlay = ColorClip(size=final_video.size, color=(0, 0, 0))
-        black_overlay = black_overlay.with_opacity(0.3).with_duration(final_video.duration)
+        black_overlay = black_overlay.with_opacity(0.4).with_duration(final_video.duration)
         final_video_with_subtitles = CompositeVideoClip([final_video, black_overlay] + subtitle_clips)
+        # final_video_with_subtitles = final_video_with_subtitles.with_volume_scaled(1.2)
         # final_video_with_subtitles = final_video_with_subtitles.resized(height=(1080// 2) * 2,
         # width=(1920// 2) * 2)
         # if background_music_path:
@@ -111,7 +112,7 @@ def edit_video(state):
                                                    fps=30,
                                                    codec="libx264",
                                                    audio_codec="aac",
-                                                   audio_bitrate="128K",
+                                                   audio_bitrate="192K",
                                                    # logger=logger,
                                                    preset="slow",
                                                    ffmpeg_params=[

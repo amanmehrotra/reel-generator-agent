@@ -1,4 +1,5 @@
 import json
+import random
 
 from groq import Groq
 from langchain_core.prompts import PromptTemplate
@@ -6,6 +7,8 @@ from langchain_openai import ChatOpenAI
 
 from llm.prompt import TOPIC_ANALYZER_PROMPT, SCRIPT_SCENE_PROMPT, VISUAL_STYLE_PROMPT, INSTA_CAPTION_PROMPT, \
     SCRIPT_SCENE_PROMPT_2
+from llm.script_generation_prompt import SCRIPT_SCENE_PROMPT_YOU_HAVE_BEEN, SCRIPT_SCENE_PROMPT_BELIEF_BREAKER, \
+    SCRIPT_SCENE_PROMPT_TRIGGER_CHALLENGE, SCRIPT_SCENE_PROMPT_MIRROR_HOLD
 from utils.config import llm_baseurl, llm_key, llm_model
 
 
@@ -37,12 +40,21 @@ class LLMService:
             raise e
 
     def generate_script(self, theme, purpose, tone, temperature):
+        all_prompts = [
+            SCRIPT_SCENE_PROMPT_YOU_HAVE_BEEN,
+            SCRIPT_SCENE_PROMPT_BELIEF_BREAKER,
+            SCRIPT_SCENE_PROMPT_TRIGGER_CHALLENGE,
+            SCRIPT_SCENE_PROMPT_MIRROR_HOLD
+        ]
+        selected_prompt = random.choice(all_prompts)
+        print(selected_prompt)
         try:
+
             completion = self.groq.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 response_format={"type": "json_object"},
                 messages=[
-                    {"role": "system", "content": SCRIPT_SCENE_PROMPT_2},
+                    {"role": "system", "content": selected_prompt},
                     {"role": "user", "content": f"Generate script for the given theme: {theme}, purpose: {purpose} and tone: {tone}"}
                 ],
                 temperature=temperature,
